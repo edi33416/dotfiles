@@ -1,0 +1,3 @@
+let g:syntastic_d_compiler = "~/workspace/dlang/code/dmd/src/dmd"
+
+let g:syntastic_d_compiler_options = "-I~/workspace/dlang/code/druntime/import/ -I~/workspace/dlang/code/phobos -L-L$HOME/workspace/dlang/code/phobos/generated/linux/release/64/"

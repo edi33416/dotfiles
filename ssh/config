@@ -1,0 +1,11 @@
+Host fep
+    HostName fep.grid.pub.ro
+    User cstaniloiu
+
+Host swarm
+    HostName swarm.cs.pub.ro
+    User estaniloiu
+
+Host sac
+    HostName 141.85.227.62
+    User uselections
