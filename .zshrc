@@ -92,4 +92,20 @@ export VISUAL=$EDITOR
 alias mux='tmuxinator'
 alias go='gnome-open'
 alias custdmd='~/workspace/dlang/code/dmd/src/dmd -I~/workspace/dlang/code/druntime/import/ -I~/workspace/dlang/code/phobos -L-L$HOME/workspace/dlang/code/phobos/generated/linux/release/64/'
+alias alexcustdmd='~/workspace/dlang/code/dmd/src/dmd -I~/workspace/dlang/alex/druntime/import/ -I~/workspace/dlang/alex/phobos -L-L$HOME/workspace/dlang/alex/phobos/generated/linux/release/64/'
 alias dotcfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+# D make shortcuts
+alias _pmake='make -j4 -f posix.mak'
+function pmake () {
+    for i in $*; do
+        _pmake $i
+    done
+}
+
+alias _pdmake='make -j4 -f posix.mak BUILD=debug'
+function pdmake () {
+    for i in $*; do
+        _pdmake $i
+    done
+}
