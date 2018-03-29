@@ -124,3 +124,6 @@ alias custdmd='~/workspace/dlang/code/dmd/src/dmd -I~/workspace/dlang/code/drunt
 # dlang env var for wine windows build
 export DM_HOME=C:\\D
 export HOST_DC=dmd
+
+# added by travis gem
+[ -f /home/ubuntu/.travis/travis.sh ] && source /home/ubuntu/.travis/travis.sh
