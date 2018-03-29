@@ -1,5 +1,6 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+ #export PATH=$HOME/bin:/usr/local/bin:$PATH
+ export PATH=$HOME/workspace/git-tools/:$PATH
 
 # Path to your oh-my-zsh installation.
   export ZSH=$HOME/.oh-my-zsh
@@ -91,21 +92,26 @@ export VISUAL=$EDITOR
 #
 alias mux='tmuxinator'
 alias go='gnome-open'
-alias custdmd='~/workspace/dlang/code/dmd/src/dmd -I~/workspace/dlang/code/druntime/import/ -I~/workspace/dlang/code/phobos -L-L$HOME/workspace/dlang/code/phobos/generated/linux/release/64/'
+alias custdmd='~/workspace/dlang/code/dmd/generated/linux/release/64/dmd -I~/workspace/dlang/code/druntime/import/ -I~/workspace/dlang/code/phobos -L-L$HOME/workspace/dlang/code/phobos/generated/linux/release/64/'
 alias alexcustdmd='~/workspace/dlang/code/dmd/src/dmd -I~/workspace/dlang/alex/druntime/import/ -I~/workspace/dlang/alex/phobos -L-L$HOME/workspace/dlang/alex/phobos/generated/linux/release/64/'
 alias dotcfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # D make shortcuts
-alias _pmake='make -j4 -f posix.mak'
-function pmake () {
+alias _pmake='make -j4 -f posix.mak BUILD=release'
+function ptmake () {
     for i in $*; do
-        _pmake $i
+        test_name=$(echo "$i" | sed -e 's/\.d$/\.test/')
+        _pmake $test_name
     done
 }
 
 alias _pdmake='make -j4 -f posix.mak BUILD=debug'
-function pdmake () {
+function pdtmake () {
     for i in $*; do
-        _pdmake $i
+        test_name=$(echo "$i" | sed -e 's/\.d$/\.test/')
+        _pdmake $test_name
     done
 }
+
+# added by travis gem
+[ -f /home/ubuntu/.travis/travis.sh ] && source /home/ubuntu/.travis/travis.sh
