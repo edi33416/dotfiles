@@ -120,6 +120,7 @@ fi
 
 alias go='gnome-open'
 alias custdmd='~/workspace/dlang/code/dmd/src/dmd -I~/workspace/dlang/code/druntime/import/ -I~/workspace/dlang/code/phobos -L-L$HOME/workspace/dlang/code/phobos/generated/linux/release/64/'
+alias dotcfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # dlang env var for wine windows build
 export DM_HOME=C:\\D
