@@ -97,7 +97,7 @@ alias alexcustdmd='~/workspace/dlang/code/dmd/src/dmd -I~/workspace/dlang/alex/d
 alias dotcfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # D make shortcuts
-alias _pmake='make -j4 -f posix.mak BUILD=release'
+alias _pmake='make -j8 -f posix.mak BUILD=release'
 function ptmake () {
     for i in $*; do
         test_name=$(echo "$i" | sed -e 's/\.d$/\.test/')
@@ -105,7 +105,7 @@ function ptmake () {
     done
 }
 
-alias _pdmake='make -j4 -f posix.mak BUILD=debug'
+alias _pdmake='make -j8 -f posix.mak BUILD=debug'
 function pdtmake () {
     for i in $*; do
         test_name=$(echo "$i" | sed -e 's/\.d$/\.test/')
@@ -113,5 +113,48 @@ function pdtmake () {
     done
 }
 
+alias reverse_fep='ssh -l cstaniloiu fep.grid.pub.ro -R 6970:localhost:22'
+
 # added by travis gem
 [ -f /home/ubuntu/.travis/travis.sh ] && source /home/ubuntu/.travis/travis.sh
+
+# TMATE Functions
+
+TMATE_PAIR_NAME="$(whoami)-pair"
+TMATE_SOCKET_LOCATION="/tmp/tmate-pair.sock"
+
+# Get current tmate connection url
+tmate-url() {
+  url="$(tmate -S $TMATE_SOCKET_LOCATION display -p '#{tmate_ssh}')"
+  echo "$url" | tr -d '\n' | pbcopy
+  echo "Copied tmate url for $TMATE_PAIR_NAME:"
+  echo "$url"
+}
+
+# Start a new tmate pair session if one doesn't already exist
+# If creating a new session, the first argument can be an existing TMUX session to connect to automatically
+tmate-pair() {
+  if [ ! -e "$TMATE_SOCKET_LOCATION" ]; then
+    tmate -S "$TMATE_SOCKET_LOCATION" -f "$HOME/.tmate.conf" new-session -d -s "$TMATE_PAIR_NAME"
+    sleep 0.3
+    tmate-url
+    sleep 1
+
+    if [ -n "$1" ]; then
+      tmate -S "$TMATE_SOCKET_LOCATION" send -t "$TMATE_PAIR_NAME" "TMUX='' tmux attach-session -t $1" ENTER
+    fi
+  fi
+  tmate -S "$TMATE_SOCKET_LOCATION" attach-session -t "$TMATE_PAIR_NAME"
+}
+
+# Close the pair because security
+tmate-unpair() {
+  if [ -e "$TMATE_SOCKET_LOCATION" ]; then
+    tmate -S "$TMATE_SOCKET_LOCATION" kill-session -t "$TMATE_PAIR_NAME"
+    echo "Killed session $TMATE_PAIR_NAME"
+  else
+    echo "Session already killed"
+  fi
+}
+
+# End TMATE Functions
