@@ -119,12 +119,17 @@ if ! shopt -oq posix; then
 fi
 
 alias go='gnome-open'
-alias custdmd='~/workspace/dlang/code/dmd/src/dmd -I~/workspace/dlang/code/druntime/import/ -I~/workspace/dlang/code/phobos -L-L$HOME/workspace/dlang/code/phobos/generated/linux/release/64/'
+#alias custdmd='~/workspace/dlang/code/dmd/generated/linux/release/64/dmd -I~/workspace/dlang/code/druntime/import/ -I~/workspace/dlang/code/phobos -L-L$HOME/workspace/dlang/code/phobos/generated/linux/release/64/'
 alias dotcfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+custdmd() {
+    ~/workspace/dlang/code/dmd/generated/linux/release/64/dmd -I~/workspace/dlang/code/druntime/import/ -I~/workspace/dlang/code/phobos -L-L$HOME/workspace/dlang/code/phobos/generated/linux/release/64/ "$@"
+}
 
 # dlang env var for wine windows build
 export DM_HOME=C:\\D
 export HOST_DC=dmd
+export -f custdmd
 
 # added by travis gem
 [ -f /home/ubuntu/.travis/travis.sh ] && source /home/ubuntu/.travis/travis.sh

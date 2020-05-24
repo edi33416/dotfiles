@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
  #export PATH=$HOME/bin:/usr/local/bin:$PATH
- export PATH=$HOME/workspace/git-tools/:$PATH
+ export PATH=$HOME/workspace/git-tools/:/snap/bin:$PATH
 
 # Path to your oh-my-zsh installation.
   export ZSH=$HOME/.oh-my-zsh
@@ -92,9 +92,18 @@ export VISUAL=$EDITOR
 #
 alias mux='tmuxinator'
 alias go='gnome-open'
-alias custdmd='~/workspace/dlang/code/dmd/generated/linux/release/64/dmd -I~/workspace/dlang/code/druntime/import/ -I~/workspace/dlang/code/phobos -L-L$HOME/workspace/dlang/code/phobos/generated/linux/release/64/'
+#alias custdmd='~/workspace/dlang/code/dmd/generated/linux/release/64/dmd -I~/workspace/dlang/code/druntime/import/ -I~/workspace/dlang/code/phobos -L-L$HOME/workspace/dlang/code/phobos/generated/linux/release/64/'
 alias alexcustdmd='~/workspace/dlang/code/dmd/src/dmd -I~/workspace/dlang/alex/druntime/import/ -I~/workspace/dlang/alex/phobos -L-L$HOME/workspace/dlang/alex/phobos/generated/linux/release/64/'
 alias dotcfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+custdmd2() {
+    ~/workspace/dlang/code/dmd/generated/linux/release/64/dmd -I~/workspace/dlang/code/druntime/import/ -I~/workspace/dlang/code/phobos -L-L$HOME/workspace/dlang/code/phobos/generated/linux/release/64/ "$@"
+}
+export custdmd2
+
+# dlang env var for wine windows build
+export DM_HOME=C:\\D
+export HOST_DC=dmd
 
 # D make shortcuts
 alias _pmake='make -j8 -f posix.mak BUILD=release'
@@ -158,3 +167,5 @@ tmate-unpair() {
 }
 
 # End TMATE Functions
+
+source ~/dlang/ldc-1.20.1/activate
