@@ -1,7 +1,7 @@
 # ~/.tmuxinator/phobos.yml
 
 name: phobos
-root: ~/workspace/dlang/code/phobos/
+root: ~/workspace/dlang/code/phobos
 
 # Optional tmux socket
 # socket_name: foo
@@ -44,10 +44,13 @@ root: ~/workspace/dlang/code/phobos/
 
 windows:
   - editor:
-      layout: 4835,173x45,0,0[173x42,0,0,0,173x2,0,43,2]
+      layout: 6673,211x54,0,0[211x41,0,0,0,211x12,0,42{140x12,0,42,1,70x12,141,42,2}]
+      #layout: 4835,173x45,0,0[173x42,0,0,0,173x2,0,43,2]
+      #layout: ded1,211x54,0,0[211x36,0,0,0,211x17,0,37{126x17,0,37,1,84x17,127,37,2}]
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
-        - vim
         - #empty
+        - #empty
+        - htop

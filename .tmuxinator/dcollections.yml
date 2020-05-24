@@ -44,10 +44,11 @@ root: ~/workspace/collections
 
 windows:
   - editor:
-      layout: 4835,173x45,0,0[173x42,0,0,0,173x2,0,43,2]
+      layout: fe40,210x56,0,0[211x42,0,0,0,211x14,0,43{133x14,0,43,2,77x14,134,43,3}]
       # Synchronize all panes of this window, can be enabled before or after the pane commands run.
       # 'before' represents legacy functionality and will be deprecated in a future release, in favour of 'after'
       # synchronize: after
       panes:
         - cd ~/workspace/collections/source/stdx/collections/
         - #empty
+        - htop
