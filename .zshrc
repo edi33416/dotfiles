@@ -196,3 +196,4 @@ tmate-unpair() {
 # End TMATE Functions
 
 #source ~/dlang/ldc-1.20.1/activate
+eval $(dircolors ~/.dircolors)
