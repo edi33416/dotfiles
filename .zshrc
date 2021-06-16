@@ -1,9 +1,9 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-export PATH=$HOME/workspace/git-tools/:/snap/bin:$PATH
+#export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/workspace/git-tools/:/snap/bin:$HOME/bin/:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/fawkes/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -67,18 +67,34 @@ HYPHEN_INSENSITIVE="true"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
+#
+###########
+# Plugins #
+###########
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(
-    git
-    zsh-syntax-highlighting
-    zsh-autosuggestions
-    autojump
-)
+
+# Manage plugins with Antigen
+
+# Get antigen
+# curl -L git.io/antigen > $HOME/.antigen.zsh
+
+# Load Antigen
+source $HOME/.antigen.zsh
+
+# Load Antigen configurations
+antigen init $HOME/.antigenrc
+
+#plugins=(
+    #git
+    #zsh-syntax-highlighting
+    #zsh-autosuggestions
+    #autojump
+#)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -195,5 +211,5 @@ tmate-unpair() {
 
 # End TMATE Functions
 
-#source ~/dlang/ldc-1.20.1/activate
+source ~/dlang/ldc-1.20.1/activate
 eval $(dircolors ~/.dircolors)
