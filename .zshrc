@@ -144,12 +144,20 @@ custdmd2() {
 }
 export custdmd2
 
+#custdmd2-dbg() {
+    #~/workspace/dlang/code/dmd/generated/linux/debug/64/dmd -I~/workspace/dlang/code/druntime/import/ -I~/workspace/dlang/code/phobos -L-L$HOME/workspace/dlang/code/phobos/generated/linux/release/64/ "$@"
+#}
+#export custdmd2-dbg
+
 # dlang env var for wine windows build
 export DM_HOME=C:\\D
 export HOST_DC=dmd
 
 # D make shortcuts
-alias _pmake='make -j8 -f posix.mak BUILD=release'
+function _pmake() {
+    make -j8 -f posix.mak BUILD=release
+}
+
 function ptmake () {
     for i in $*; do
         test_name=$(echo "$i" | sed -e 's/\.d$/\.test/')
@@ -157,7 +165,10 @@ function ptmake () {
     done
 }
 
-alias _pdmake='make -j8 -f posix.mak BUILD=debug'
+function _pdmake() {
+    make -j8 -f posix.mak BUILD=debug
+}
+
 function pdtmake () {
     for i in $*; do
         test_name=$(echo "$i" | sed -e 's/\.d$/\.test/')
@@ -211,5 +222,9 @@ tmate-unpair() {
 
 # End TMATE Functions
 
-source ~/dlang/ldc-1.20.1/activate
+source ~/dlang/ldc-1.29.0/activate
 eval $(dircolors ~/.dircolors)
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
