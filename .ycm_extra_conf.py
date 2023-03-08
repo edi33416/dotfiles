@@ -112,3 +112,17 @@ def FlagsForFile( filename, **kwargs ):
     'flags': list( compilation_info.compiler_flags_ ),
     'include_paths_relative_to_dir': compilation_info.compiler_working_dir_
   }
+
+def Settings(**kwargs):
+    lang = kwargs['language']
+    if lang == 'd':
+        return { 'ls': {
+                   'd': { 'stdlibPath': '/opt/homebrew/Cellar/ldc/1.29.0/lib/' }
+                   # 'd': { 'stdlibPath': '/opt/homebrew/Cellar/ldc/1.29.0/include/dlang/ldc/' }
+                   # In case you need multiple paths, do
+                   # 'd' : { 'stdlibPath': ['/path/to', '/your/stdlibs']}
+                   # For other config options, see README.md
+                 }
+               }
+    else:
+        return {}

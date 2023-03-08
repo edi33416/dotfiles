@@ -133,3 +133,4 @@ export -f custdmd
 
 # added by travis gem
 [ -f /home/ubuntu/.travis/travis.sh ] && source /home/ubuntu/.travis/travis.sh
+. "$HOME/.cargo/env"
