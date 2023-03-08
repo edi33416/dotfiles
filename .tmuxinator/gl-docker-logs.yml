@@ -1,0 +1,15 @@
+# ~/.tmuxinator/phobos.yml
+
+name: phobos
+root: ~/workspace/goodlegal/goodlegal/docker
+
+windows:
+  - logs:
+      layout: 25f6,202x57,0,0[202x18,0,0{100x18,0,0,53,101x18,101,0,61},202x18,0,19{100x18,0,19,56,101x18,101,19,58},202x19,0,38{100x19,0,38,57,101x19,101,38,63}]
+      panes:
+        - docker-compose logs -f syncwebapi
+        - docker-compose logs -f frontend
+        - docker-compose logs -f security
+        - docker-compose logs -f metadata
+        - docker-compose logs -f content
+        - docker-compose logs -f history
